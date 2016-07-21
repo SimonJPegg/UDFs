@@ -23,8 +23,12 @@ public class StrToTimeStamp extends UDF {
      * @return a string in the dateformat specified by outputFormatText
      */
     public Text evaluate(Text input, Text inputFormatText, Text outputFormatText) {
-        DateTime date = DateTimeFormat.forPattern(inputFormatText.toString()).parseDateTime(input.toString());
-        return new Text(DateTimeFormat.forPattern(outputFormatText.toString()).print(date));
+        try {
+            DateTime date = DateTimeFormat.forPattern(inputFormatText.toString()).parseDateTime(input.toString());
+            return new Text(DateTimeFormat.forPattern(outputFormatText.toString()).print(date));
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
 

@@ -9,8 +9,6 @@ public class LastDayOFMonthTest {
 
     @Test
     public void testUDF() {
-        String date = "";
-        String dateFormat = "";
         LastDayOfMonth udf = new LastDayOfMonth();
         Assert.assertEquals(udf.evaluate(new Text("2015-02-03 14:21:00.000"),
                 new Text("yyyy-MM-dd HH:mm:ss.SSS")).get(),28);
@@ -18,10 +16,15 @@ public class LastDayOFMonthTest {
 
     @Test
     public void testUDFWithLeapYear() {
-        String date = "";
-        String dateFormat = "";
         LastDayOfMonth udf = new LastDayOfMonth();
         Assert.assertEquals(udf.evaluate(new Text("03/02/2016"),
                 new Text("dd/MM/yyyy")).get(),29);
+    }
+
+    @Test
+    public void testWithInvalidFormat() {
+        LastDayOfMonth udf = new LastDayOfMonth();
+        Assert.assertEquals(udf.evaluate(new Text("03/02/2016"),
+                new Text("")),null);
     }
 }

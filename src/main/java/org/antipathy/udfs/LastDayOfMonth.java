@@ -21,7 +21,11 @@ public class LastDayOfMonth extends UDF {
      * @return the last day of the month as an integer
      */
     public IntWritable evaluate(Text inputString, Text dateFormat) {
-        DateTime date = DateTimeFormat.forPattern(dateFormat.toString()).parseDateTime(inputString.toString());
-        return new IntWritable(date.dayOfMonth().withMaximumValue().getDayOfMonth());
+        try {
+            DateTime date = DateTimeFormat.forPattern(dateFormat.toString()).parseDateTime(inputString.toString());
+            return new IntWritable(date.dayOfMonth().withMaximumValue().getDayOfMonth());
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
