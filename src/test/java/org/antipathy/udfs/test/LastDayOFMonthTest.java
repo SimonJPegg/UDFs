@@ -27,4 +27,10 @@ public class LastDayOFMonthTest {
         Assert.assertEquals(udf.evaluate(new Text("03/02/2016"),
                 new Text("")),null);
     }
+
+    @Test
+    public void testWithNull() {
+        LastDayOfMonth udf = new LastDayOfMonth();
+        Assert.assertEquals(udf.evaluate(null,null),null);
+    }
 }

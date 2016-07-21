@@ -25,4 +25,10 @@ public class StrToTimeStampTest {
                 new Text("")),
                 null);
     }
+
+    @Test
+    public void testWithNull() {
+        StrToTimeStamp udf = new StrToTimeStamp();
+        Assert.assertEquals(udf.evaluate(null,null,null),null);
+    }
 }

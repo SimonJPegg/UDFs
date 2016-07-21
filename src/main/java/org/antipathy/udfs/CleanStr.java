@@ -21,10 +21,18 @@ public class CleanStr extends UDF {
      * @return a string stripped of all removeChars.
      */
     public Text evaluate(Text inputString, Text replaceWith, Text... removeChars) {
-        String output = inputString.toString();
-        for (int removeIter = 0; removeIter < removeChars.length; removeIter ++) {
-            output = output.replaceAll(removeChars[removeIter].toString(), replaceWith.toString());
+        if (null != inputString
+                && null != replaceWith
+                && null != removeChars) {
+            String output = inputString.toString();
+            for (int removeIter = 0; removeIter < removeChars.length; removeIter ++) {
+                if (null != removeChars[removeIter]) {
+                    output = output.replaceAll(removeChars[removeIter].toString(),
+                            replaceWith.toString());
+                }
+            }
+            return new Text(output);
         }
-        return new Text(output);
+        return null;
     }
 }

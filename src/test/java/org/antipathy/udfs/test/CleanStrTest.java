@@ -14,6 +14,7 @@ public class CleanStrTest {
                 new Text(" ")).toString().equals("replaceallspaces"));
     }
 
+
     @Test
     public void testUDFWithMultiArg() {
         CleanStr cleanStr = new CleanStr();
@@ -26,5 +27,22 @@ public class CleanStrTest {
         CleanStr cleanStr = new CleanStr();
         Assert.assertTrue(cleanStr.evaluate(new Text("someString"), new Text(""),
                 new Text("")).toString().equals("someString"));
+    }
+
+    @Test
+    public void testUDFWithNulls() {
+        CleanStr cleanStr = new CleanStr();
+        Assert.assertEquals(cleanStr.evaluate(null,null,null),null);
+    }
+
+    @Test
+    public void testUDFWithSingleNull() {
+        CleanStr cleanStr = new CleanStr();
+        Assert.assertTrue(cleanStr.evaluate(new Text("replace all spaces\nand\nnewlines"),
+                new Text(""),
+                new Text(" "),
+                new Text("\n"),
+                null
+        ).toString().equals("replaceallspacesandnewlines"));
     }
 }

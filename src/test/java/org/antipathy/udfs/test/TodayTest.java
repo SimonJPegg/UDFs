@@ -29,4 +29,10 @@ public class TodayTest {
         Today udf = new Today();
         Assert.assertEquals(udf.evaluate(new Text("")),null);
     }
+
+    @Test
+    public void testWithNull() {
+        Today udf = new Today();
+        Assert.assertEquals(udf.evaluate(null),null);
+    }
 }
