@@ -24,6 +24,7 @@ hive>  add jar /path/to/udfs-<version>.jar
 hive> CREATE FUNCTION clean_str AS 'org.antipathy.udfs.CleanStr'
 hive> CREATE FUNCTION last_day AS 'org.antipathy.udfs.LastDayOfMonth'
 hive> CREATE FUNCTION str_to_timestamp AS 'org.antipathy.udfs.StrToTimeStamp'
+hive> CREATE FUNCTION today AS 'org.antipathy.udfs.Today'	
 ```
 
 
